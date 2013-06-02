@@ -1,0 +1,108 @@
+html, body, div {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+    color: #262626;
+	background: #eee;
+	font: normal 12px/18px Verdana, sans-serif;
+}
+
+#content {
+	width: 400px;
+	margin: 100px auto 20px auto;
+	padding: 0 60px 30px 60px;
+	border: solid 1px #cbcbcb;
+	background: #fafafa;
+	-moz-box-shadow: 0px 0px 10px #aaa;
+	-webkit-box-shadow: 0px 0px 10px #aaa;
+	text-align: justify;
+}
+
+h1 {
+	margin: 30px 0 15px 0;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+h1 span {
+	font-size: 50%;
+	letter-spacing: -0.05em;
+}
+
+hr {
+	border: none;
+	height: 1px; line-height: 1px;
+	background: #E5E5E5;
+	margin-bottom: 20px;
+	padding: 0;
+}
+
+p {
+	margin: 0;
+	padding: 7px 0;
+}
+
+a {
+	outline: none;
+	color: #4f62a7;
+}
+
+a img {
+	border: 1px solid #BBB;
+	padding: 2px;
+	margin: 10px 20px 10px 0;
+	vertical-align: top;
+}
+
+a img.last {
+	margin-right: 0;	
+}
+
+/* menu */
+#base
+{
+	font-size: 53px;
+	font-weight: bold;
+}
+.menu 
+{
+	position: absolute;
+	top: 25px;
+	left: 15px;
+	font-size: 14px;
+}
+.menu ul
+{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	color: #CCC;
+}
+.menu ul li
+{
+	padding: 2px 7px 2px 7px;
+	float: left;
+	border-radius: 5px;
+}
+.menu a
+{
+	text-decoration: none;
+    text-shadow: 0px 1px 0px white;
+	color: #333;
+}
+#root_menu
+{
+	position: relative;
+	top: -41px;
+	left: 240px;
+}
+.menu #current
+{
+	background: #DDD;
+}
+.menu #current a
+{
+    text-shadow: 0px 1px 0px #efefef;
+}

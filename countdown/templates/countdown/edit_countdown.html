@@ -1,0 +1,10 @@
+{% extends "countdown/base.html" %}{% load i18n %}
+
+{% block content %}
+    <form method="post">
+        <table>
+            {% include "form.html" %}
+            <tr><td></td><td><input type="submit" value="{% trans "Save" %}" id="id_submit" /></td></tr>
+        </table>
+    </form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}{% load i18n %}{% load auth %}
+
+{% block content %}
+	<div class="navigation">
+		<h3>Archive</h3>
+		{% for date in date_list %}
+			<a href="/{{ date|date:"Y" }}/">{{ date|date:"Y" }}</a><br />
+		{% endfor %}
+	</div>
+
+	{% for entry in latest %}
+		<h2>{{ entry.title }}</h2>
+		<div class="extra_info">{{ entry.creation_time|relative_date }}</div>
+		{{ entry.content|linebreaks_and_spaces }}
+	{% endfor %}
+	
+{% endblock %}

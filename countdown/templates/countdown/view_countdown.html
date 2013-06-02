@@ -1,0 +1,57 @@
+{% extends "countdown/base.html" %}{% load i18n %}
+
+{% block header %}{{ countdown.title }}{% endblock %}
+
+{% block content %}
+    <h1 id="id_countdown_title">{{ countdown.title }}</h1>
+    <div id="id_countdown_target_time">{{ countdown.target_time|date:"Y-m-d H:i" }}</div>
+    <h2 id="id_countdown">-</h2>
+    <!-- <h3 id="id_creator">{% trans "created by" %} {{ countdown.creator }}</h3> -->
+    <div id="id_countdown_description">{{ countdown.description }}</div>
+
+
+    <script>
+        var one_second = 1000;
+        var one_minute = one_second*60;
+        var one_hour = one_minute*60;
+        var one_day = one_hour*24;
+        var target_time = new Date();
+        target_time.setYear({{ countdown.target_time.year }});
+        target_time.setMonth({{ countdown.target_time.month }}-1);
+        target_time.setDate({{ countdown.target_time.day }});
+        target_time.setHours({{ countdown.target_time.hour }});
+        target_time.setMinutes({{ countdown.target_time.minute }});
+        target_time.setSeconds(0);
+        target_time.setMilliseconds(0);
+
+        function update()
+        {
+            var now = new Date();
+            var in_past = false;
+            var diff = target_time - now.valueOf();
+            if (diff < 0)
+            {
+                diff = -diff;
+                in_past = true;
+            }
+            var days = Math.floor(diff/one_day);
+            diff -= days*one_day;
+            var hours = Math.floor(diff/one_hour);
+            diff -= hours*one_hour;
+            var minutes = Math.floor(diff/one_minute);
+            diff -= minutes*one_minute;
+            var seconds = Math.floor(diff/one_second);
+            diff -= seconds*one_second;
+
+            var t = in_past? "missed by ":"";
+            if (days != 0)    t += days + " days ";
+            if (days != 0 || hours != 0)   t += hours + " hours ";
+            if (days != 0 || hours != 0 || minutes != 0) t += minutes + " minutes ";
+            if (days != 0 || hours != 0 || minutes != 0 || seconds != 0) t += seconds + " seconds ";
+
+            $("id_countdown").innerHTML = t;
+        }
+
+        setInterval(update, 1000); // refresh every second
+    </script>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "flatpages/default.html" %}
+{% load i18n %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+	<h1>Blog</h1>
+	{% for o in object_list %}
+		<div>
+			<h2>{{ o.title }}</h2>
+			{{ o.content|safe }}
+		</div>
+	{% endfor %}
+	
+	<div class="pagination" style="text-align:center;">
+	    <span class="step-links">
+	        {% if page_obj.has_previous %}
+	            <a href="?page={{ page_obj.previous_page_number }}">&lt; newer</a>
+	        {% endif %}
+
+	        <span style="padding: 10px;">
+	            Page {{ page_obj.number }} of {{ paginator.num_pages }}
+	        </span>
+				
+	        {% if page_obj.has_next %}
+	            <a href="?page={{ page_obj.next_page_number }}">older &gt;</a>
+	        {% endif %}
+	    </span>
+	</div>
+{% endblock %}

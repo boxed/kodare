@@ -1,0 +1,35 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<style>
+			h3 
+			{
+				width: 400px;
+				margin-right: auto;
+				margin-left: auto;
+				text-align: center;
+			}
+			
+			div
+			{
+				background-color: #DDF;
+				border-radius: 5px;
+				margin-top: 10px;
+				padding: 3px 10px 3px 10px;
+				width: 400px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		</style>
+		{% for category, texts in objects.items %}
+			{% ifnotequal category "" %}
+				<h3>{{ category }}</h3>
+			{% endifnotequal %}
+			
+			{% for text in texts %}
+				<div>{{ text|linebreaks }}</div>
+			{% endfor %}
+		{% endfor %}
+	</body>
+</html>

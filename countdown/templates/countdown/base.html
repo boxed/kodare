@@ -1,0 +1,39 @@
+{% load i18n %}{% load auth %}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">
+    <head>
+        <link rel="stylesheet" type="text/css" href="/countdown.css" />
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/prototype.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/core.js"></script>
+        <script type="text/javascript" src="/jsi18n/"></script>
+        <script type="text/javascript" src="/media/js/core.js"></script>
+        <script type="text/javascript" src="/media/js/admin/RelatedObjectLookups.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/calendar-picker.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/DateTimeShortcuts.js"></script>
+        <title>{% block header %}{% trans "Countdown" %}{% endblock %}</title>
+    </head>
+    <body>
+        <div id="{% block main_id%}id_main{% endblock %}">
+            {% block body %}
+                {% block content %}{% endblock %}
+
+                <div id="id_create_button"><a href="/create/">{% trans "Create countdown" %}</a></div>
+
+                <div id="id_footer">
+                    Countdown services provided by Kodare.net<br />
+                    You can reach us at <a href="mailto:kodare@killingar.net">kodare@killingar.net</a>
+                </div>
+            {% endblock %}
+        </div>
+
+        <script type="text/javascript">
+            prepare_inputs_for_help_messages();
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+            try {
+                var pageTracker = _gat._getTracker("UA-4109094-3");
+                pageTracker._trackPageview();
+            } catch(err) {}
+        </script>
+    </body>
+</html>

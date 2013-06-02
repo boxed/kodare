@@ -1,0 +1,124 @@
+body
+{
+    background: #1e1e1e url('/site-media/countdown-bg.png') repeat-x;
+    text-align: center;
+    width: 100%;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-family: verdana;
+    color: #c4c4c4;
+}
+
+#id_countdown_target_time
+{
+    font-size: 10px;
+    color: #A5A5A5;
+}
+
+#id_countdown_description
+{
+    color: #A5A5A5;
+}
+
+h1
+{
+    margin-top: 60px;
+    margin-bottom: 7px;
+}
+
+a
+{
+    color: #a6a6a6;
+    text-decoration: none;
+}
+
+#id_title
+{
+    width: 298px;
+}
+
+#id_create_button
+{
+    position:absolute;
+    top: 387px;
+    text-align:center;
+    width: 100%;
+    font-size: 14px;
+    background: url('/site-media/countdown-button.png') no-repeat center;
+    height: 35px;
+    padding-top: 13px;
+}
+
+#id_footer
+{
+    position:absolute;
+    top: 450px;
+    text-align:center;
+    width: 100%;
+    color: #626262;
+    font-size: 11px;
+}
+
+#id_footer a
+{
+    color: #626262;
+}
+
+#id_main_form table
+{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+#id_main_form #id_create_button
+{
+    display: none;
+}
+
+.calendarbox
+{
+    background: #fefefe;
+    color: black;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#id_target_time_0
+{
+    width: 80px;
+}
+
+#id_target_time_1
+{
+    width: 50px;
+    margin-left: 20px;
+}
+
+.help_text 
+{
+    display: none;
+    position: absolute;
+    width: 200px;
+    margin-left: 10px;
+    border: 1px solid #D4A94A; 
+    padding: 10px 12px;
+    font-size: 12px;
+    color: #555;
+    /* to fix IE6, I can't just declare a background-color,
+    I must do a bg image, too!  So I'm duplicating the pointer.gif
+    image, and positioning it so that it doesn't show up
+    within the box */
+    background: #ffc url({{ MEDIA_URL }}pointer.gif) no-repeat -10px 5px;
+}
+
+.help_text .help-pointer 
+{
+    position: absolute;
+    left: -10px;
+    top: 5px;
+    width: 10px;
+    height: 19px;
+    background: url({{ MEDIA_URL }}pointer.gif) left top no-repeat;
+}

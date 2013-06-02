@@ -1,0 +1,30 @@
+{% load i18n %}
+<html>
+    <head>
+    <title>Stats</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script src="{{ MEDIA_URL }}js/jquery.autocomplete.pack.js"></script>
+    <link rel="stylesheet" media="screen" type="text/css" href="{{ MEDIA_URL }}jquery.autocomplete.css" />
+        <script>
+            var categories = [
+                {% for category in categories %}
+                    "{{ category|escapejs }}",
+                {% endfor %}
+            ];
+            
+        </script>
+    </head>
+    <body onload="document.f.category.focus()">
+        <form method="post" name="f">
+            <input type="hidden" name="lookup" value="" id="id_lookup" />
+            <table>
+                {{ form }}
+                <tr><td colspan="2" id="id_feedback"></td></tr>
+                <tr><td></td><td><input type="submit" value="{% trans "Add data" %}" id="id_submit" /></td></tr>
+            </table>
+        </form>
+        <script>
+            jQuery("#id_category").autocomplete(categories);
+    	</script>
+    </body>
+</html>

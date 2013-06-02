@@ -1,0 +1,7 @@
+{% extends "blog/base.html" %}{% load i18n %}{% load auth %}
+
+{% block content %}
+	{% for date in date_list %}
+		<a href="/{{ year }}/{{ date|date:"M" }}">{{ date|date:"M" }}</a>
+	{% endfor %}
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "blog/base.html" %}{% load i18n %}{% load auth %}
+
+{% block content %}
+	<h2>{{ object.title }}</h2>
+	{{ object.content|safe }}
+{% endblock %}

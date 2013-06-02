@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<title>Fixed header</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+		<script type="text/javascript" src="{{ MEDIA_URL }}input_overlay/input_overlay.js"></script>
+		<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}input_overlay/input_overlay.css" />
+
+		<script type="text/javascript" src="{{ MEDIA_URL }}fixed_header/fixed_header.js"></script>
+		<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}fixed_header/fixed_header.css" />
+
+		<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.form.js"></script>
+	</head>
+	<body>
+		<script>
+			var header = ''+
+			'<div id="fixed_top_header_content">'+
+				'<form id="login_form" method="post" action="/very_simple/fixed_header_ajax/">'+
+					'<div style="text-align:center; font-weight:bold">You are no longer logged in.</div> '+
+					'Log in again: '+
+					'<input name="username" type="text" default_value="email" />'+
+					'<input name="password" type="password" default_value="blablabla" />'+
+					'<input type="submit" class="button" value="Log in" />'+
+				'</form>'+
+			'</div>';
+		
+			create_fixed_header(header);
+			$('#login_form').ajaxForm(function(data){
+				if (data == 'success') {
+					remove_fixed_header();
+				}
+				else {
+					alert(data);
+				}
+			});
+	    	updateInputOverlays();
+		</script>
+		<a href="#" onClick="javascript:create_fixed_header(header); updateInputOverlays();">create</a>
+		<a href="#" onClick="javascript:remove_fixed_header()">remove</a>
+		<div id="content"> 
+			<h2>The correct email/password combination is: foo@bar.com, pass</h2>
+			
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			content 	content 	content 	content 	content 	content 	content 	content 
+			bar
+		</div>
+	</body>
+</html>

@@ -1,0 +1,4 @@
+{% load i18n %}
+{{ countdown }} {% trans "created" %}<br />
+URL: <a href="{{ url }}">{{ url }}</a><br />
+{% trans "Edit your countdown at: " %} <a href="{{ url }}edit/?password={{ countdown.password }}">{{ url }}edit/?password={{ countdown.password }}</a>

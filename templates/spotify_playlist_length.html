@@ -31,12 +31,13 @@
                 },
                 success: function(data) {
                     $('#result').html(data);
+                    $('button').attr('disabled', '');
                 },
                 error: function(data) {
                     $('#result').html(data);
+                    $('button').attr('disabled', '');
                 }
             });
-            $('button').attr('disabled', '');
         });
     </script>
 {% endblock %}

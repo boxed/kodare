@@ -1,0 +1,42 @@
+{% extends "flatpages/default.html" %}
+{% load i18n %}
+
+{% block title %}Spotify Playlist Length{% endblock %}
+
+{% block content %}
+	<h1>Spotify Playlist Length</h1>
+
+    <ul>
+        <li>Go to your playlist in spotify</li>
+        <li>Select the entire playlist with Ctrl+A or Cmd+A</li>
+        <li>Copy the playlist with Ctrl+C or Cmd+C</li>
+        <li>Paste the playlist into the text field below with Ctrl+V or Cmd+V</li>
+        <li>Press the 'Calculate' button</li>
+    </ul>
+
+    <div id="result"></div>
+
+    <textarea style="width: 100%; height: 200px"></textarea>
+    <button class="button">Calculate</button>
+
+    <script>
+        $('button').click(function() {
+            $('#result').html('Calculating...');
+            $('button').attr('disabled', 'disabled');
+            $.ajax({
+                url: '.',
+                type: 'POST',
+                data: {
+                    data: $('textarea').val()
+                },
+                success: function(data) {
+                    $('#result').html(data);
+                },
+                error: function(data) {
+                    $('#result').html(data);
+                }
+            });
+            $('button').attr('disabled', '');
+        });
+    </script>
+{% endblock %}

@@ -17,14 +17,14 @@ urlpatterns = patterns('',
     (r'^site-media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 
     url(r'^stats/', include('kodare.stats.urls')),
-    url(r'^blog/', include('kodare.blog.urls')),
 )
 
 urlpatterns += patterns('kodare.views',
-    (r'^SL/$',                                                      'SL', {}),
-    (r'^syntax_highlight/$',                                        'syntax_highlight', {}),
-    (r'^objc_to_python/$',                                        'objc_to_python', {}),
-    (r'^objc_to_python/source/$',                                   'objc_to_python_source', {}),
+    (r'^spotify_playlist_length/', 'spotify_playlist_length'),
+    (r'^SL/$', 'SL', {}),
+    (r'^syntax_highlight/$', 'syntax_highlight', {}),
+    (r'^objc_to_python/$', 'objc_to_python', {}),
+    (r'^objc_to_python/source/$', 'objc_to_python_source', {}),
     
     (r'^very_simple/fixed_header_ajax/$',   'very_simple_fixed_header_ajax', {}),
     (r'^very_simple/fixed_header/$',        'very_simple_fixed_header', {}),

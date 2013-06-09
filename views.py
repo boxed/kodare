@@ -110,3 +110,21 @@ def sk_forum_planning_calendar(request):
     connection.close()
     
     return HttpResponse(cal.as_string(), mimetype='text/calendar')
+
+def spotify_playlist_length(request):
+    if request.POST:
+        import requests
+        import xml.etree.ElementTree as ET
+
+        length = 0.0
+        for line in request.POST['data'].split('\n'):
+            line = line.replace('http://open.spotify.com/track/', '').strip()
+            r = requests.get('http://ws.spotify.com/lookup/1/', params={'uri':'spotify:track:%s' % line})
+            if r.content:
+                root = ET.fromstring(r.content)
+                length += float([x.text for x in root.findall('{http://www.spotify.com/ns/music/1}length')][0])
+            else:
+                print "couldn't get info for ", line
+        return HttpResponse('%d hours %d minutes %d seconds' % (length//(60*60), (length//60)%60, length%60))
+
+    return render_to_response(request, 'spotify_playlist_length.html', {})

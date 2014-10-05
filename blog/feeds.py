@@ -7,7 +7,7 @@ class BlogFeed(Feed):
     description = "Kodare Blog"
 
     def items(self):
-        return Entry.objects.all()[:20]
+        return Entry.objects.all().order_by('-creation_time')[:20]
 
     def item_title(self, item):
         return item.title

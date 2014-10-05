@@ -1,6 +1,9 @@
 {% extends "blog/base.html" %}{% load i18n %}{% load auth %}
 
+{% block title %}{{ object.title }}{% endblock %}
+
 {% block content %}
+    <h1><a href="..">Blog</a></h1>
 	<h2>{{ object.title }}</h2>
 	{{ object.content|safe }}
 {% endblock %}

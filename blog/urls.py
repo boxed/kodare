@@ -1,6 +1,8 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import *
+from django.views.generic import DetailView, ListView
 from kodare.blog.models import Entry
 
 urlpatterns = patterns('',
-    (r'^$', 'django.views.generic.list_detail.object_list', {'queryset':Entry.objects.order_by('-creation_time'), 'paginate_by':5, 'template_name':'blog.html'}),
+    (r'^$', ListView.as_view(queryset=Entry.objects.order_by('-creation_time'), paginate_by=5, template_name='blog.html')),
+    (r'^(?P<slug>.*)/$', DetailView.as_view(queryset=Entry.objects.all()))
 )

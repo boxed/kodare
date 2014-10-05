@@ -1,6 +1,10 @@
 # Django settings for kodare project.
 
-DEBUG = True
+import os
+DOCUMENT_ROOT = os.path.split(os.path.dirname(os.path.abspath(__file__)))[0] + '/'
+
+
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -20,6 +24,10 @@ TIME_ZONE = 'Europe/Stockholm'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
+ALLOWED_HOSTS = [
+    '.kodare.net',
+]
+
 SITE_ID = 2
 
 # If you set this to False, Django will make some optimizations so as not
@@ -28,7 +36,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/var/www-python/kodare/kodare/site-media/'
+MEDIA_ROOT = DOCUMENT_ROOT + '/kodare/site-media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -45,9 +53,8 @@ SECRET_KEY = '!_wq)#&q%-$85m%@70wzqfk0)4##^up91%+nfnua%#px*wqh4s'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.load_template_source',
-    'django.template.loaders.app_directories.load_template_source',
-#     'django.template.loaders.eggs.load_template_source',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -56,7 +63,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.doc.XViewMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-    #'facebook.djangofb.FacebookMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 ROOT_URLCONF = 'kodare.urls'
@@ -65,7 +72,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/var/www-python/kodare/kodare/templates'
+    DOCUMENT_ROOT + 'kodare/templates',
 )
 
 INSTALLED_APPS = (
@@ -81,10 +88,9 @@ INSTALLED_APPS = (
     'kodare.countdown',
     'kodare.stats',
     'kodare.iphone_sync',
-    #'kodare.facebook_test',
 )
 
-from settings_local import *
-
-#FACEBOOK_API_KEY = 'your_api_key'
-#FACEBOOK_SECRET_KEY = 'your_secret_key' 
+try:
+    from settings_local import *
+except ImportError:
+    pass

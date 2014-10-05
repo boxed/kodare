@@ -128,3 +128,6 @@ def spotify_playlist_length(request):
         return HttpResponse('%d hours %d minutes %d seconds' % (length//(60*60), (length//60)%60, length%60))
 
     return render_to_response(request, 'spotify_playlist_length.html', {})
+
+def error_test(request):
+    asd()

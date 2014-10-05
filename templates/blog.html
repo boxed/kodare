@@ -7,7 +7,7 @@
 	<h1>Blog</h1>
 	{% for o in object_list %}
 		<div>
-			<h2>{{ o.title }}</h2>
+			<h2><a href="{{ o.slug }}/">{{ o.title }}</a></h2>
 			{{ o.content|safe }}
 		</div>
 	{% endfor %}

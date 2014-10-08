@@ -26,6 +26,7 @@ LANGUAGE_CODE = 'en-us'
 
 ALLOWED_HOSTS = [
     '.kodare.net',
+    '.kodare.com',
 ]
 
 SITE_ID = 2

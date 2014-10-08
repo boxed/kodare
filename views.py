@@ -3,53 +3,10 @@ from curia.shortcuts import *
 
 # kummelbyvagen -> sergels torg
 # latitude_source=17965715&longitude_source=59416341&latitude_destination=18064485&longitude_destination=59332795
-def very_simple_fixed_header_ajax(request):
-    if request.REQUEST['username'] == 'foo@bar.com' and request.REQUEST['password'] == 'pass':
-        return HttpResponse('success')
-    else:
-        return HttpResponse('login failed')
-
-def very_simple_fixed_header(request):
-    return render_to_response(request, 'very_simple/fixed_header.html', {})
 
 def index(request):
     return render_to_response(request, 'kodare.html', {})
 
-def SL(request):
-    from kodare.SL import *
-    latitude, longitude = request.GET['latitude_source'], request.GET['longitude_source']
-    
-    planner = TravelPlanner()
-    planner.set_source(latitude, longitude)
-    planner.set_destination(latitude, longitude)
-    return HttpResponse(planner.get_path().encode('utf-8'))
-    
-def transit_stations(request):
-    latitude, longitude = request.GET['latitude_source'], request.GET['longitude_source']
-    url = r"http://maps.google.com/maps?f=q&source=s_q&output=json&hl=en&geocode=&q=transit+station+loc%%3A+%(longitude)s%%2C%(latitude)s&btnG=Search+Maps&vps=1&jsv=155c&sll=%(longitude)s%%2C%(latitude)s&sspn=0.011856%%2C0.032015&g=%(longitude)s%%2C%(latitude)s" % {'longitude':longitude, 'latitude':latitude}
-
-    from simplejson import *
-    import re
-    import urllib2
-
-    #f = open('maps', 'r')
-    req = urllib2.Request(url, "OK")
-    f = urllib2.urlopen(req)
-
-    name_pattern = re.compile(r'name:\"(.*?)\"')
-    coordinate_pattern = re.compile(r'latlng\=(.*?)\\x')
-    stations = []
-    for entry in f.read().replace('\n', '').replace('\r', '').split('{id:"')[1:-1]:
-        try:
-            name = name_pattern.search(entry).group(1)
-            coordinate = coordinate_pattern.search(entry).group(1).rsplit(',')[:2]
-            stations = [name, coordinate[0], coordinate[1]]
-        except:
-            #print entry
-            pass
-
-    f.close()
-    return HttpResponse()
 
 def syntax_highlight(request):
     from pygments import highlight

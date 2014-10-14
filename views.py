@@ -17,13 +17,13 @@ def syntax_highlight(request):
         code = request.POST['code']
         #result = '<style>'+HtmlFormatter().get_style_defs('')+'</style>'
         result = highlight(code, PythonLexer(), HtmlFormatter())
-        return HttpResponse(result.encode('utf-8'), mimetype='text/plain')
+        return HttpResponse(result.encode('utf-8'), content_type='text/plain')
     return HttpResponse('<html><head><title>Syntax highlight</title></head><body><h1>Syntax highlight code as HTML</h1><form method="post"><textarea cols="70" rows="30" name="code"></textarea><br /><input type="submit" /></form></body></html>')
 
 def objc_to_python_source(request):
     import inspect
     import objc_to_python as m
-    return HttpResponse(inspect.getsource(m), mimetype='text/plain')
+    return HttpResponse(inspect.getsource(m), content_type='text/plain')
     
     
 def objc_to_python(request):
@@ -31,7 +31,7 @@ def objc_to_python(request):
     
     if request.POST:
         code = request.POST['code']
-        return HttpResponse(convert(code).encode('utf-8'), mimetype='text/plain')
+        return HttpResponse(convert(code).encode('utf-8'), content_type='text/plain')
     return HttpResponse('<html><head><title>Objective-C to Python</title></head><body><h1>Convert Objective-C to Python</h1>This will only support some very trivial Objective-C code, Caveat emptor!<br /><form method="post"><textarea cols="70" rows="30" name="code"></textarea><br /><input type="submit" /></form></body></html>')    
     
 def sk_forum_planning_calendar(request):
@@ -66,7 +66,7 @@ def sk_forum_planning_calendar(request):
         cal.add_component(event)
     connection.close()
     
-    return HttpResponse(cal.as_string(), mimetype='text/calendar')
+    return HttpResponse(cal.as_string(), content_type='text/calendar')
 
 def spotify_playlist_length(request):
     if request.POST:
